@@ -1,0 +1,64 @@
+npm init -y
+npm install express
+npm install mongoose --save
+npm install typescript --save-dev
+npm i cors
+npm i --save-dev @types/cors
+npm i dotenv
+npx tsc -init
+npm i --save-dev @types/node
+npm i --save-dev @types/express
+npm i ts-node-dev --save-dev
+npm i validator
+npm i @types/validator
+npm install zod
+npm i bcrypt (for password encryption purpose)
+npm install --save @types/bcrypt
+npm i http-status (npm)
+
+// Some Run Command //
+npm run build (tsc)
+npx tsc --version
+npm run start-dev (ts-node-dev --respawn --transpile-only src/server.ts)
+npx tsc src/index.ts
+
+// ESLint Setup //
+==> Add the following code at the top on tsconfig.json
+    "include": ["src"], // which files to compile
+    "exclude": ["node_modules"], // which files to skip
+==> Install ESLint using:
+    npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev
+==> For ESLint Initialization:
+    npx eslint --init (npm init @eslint/config)
+==> Some package.json script
+    "start.prod": "node ./dist/server.js",
+    "start-dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "lint": "npx eslint src --ignore-pattern .ts",
+    "lint:fix": "npx eslint src --fix",
+    "prettier": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
+    "prettier:fix": "npx prettier --write src",
+==> Check Error and Warning with fixing
+    npm run lint
+    npm run lint --fix
+
+// Prettier Setup //
+==> Install Prettier:
+    npm install --save-dev prettier
+==> Create a file in root directory of your project folder including following code (.prettierrc.json)
+    {
+        "semi": true,
+        "singleQuote": true
+    }
+==> Using following command code will be formatted
+    npm run prettier
+    npm run prettier:fix
+==> Protecting Conflict between ESLint and Prettier:
+    npm install --save-dev eslint-config-prettier
+
+
+==> next(err), 4 middleware (err, req, res, next), NextFunction
+==> http status (npm)
+==>  
+
+

@@ -1,5 +1,4 @@
 import { Schema, model, connect } from 'mongoose';
-import validator from 'validator';
 import {
   TGuardian,
   TLocalGuardian,
@@ -7,8 +6,6 @@ import {
   StudentModel,
   TUserName,
 } from './student.interface';
-import bcrypt from 'bcrypt';
-import config from '../../config';
 
 // Create a Schema corresponding to the document interface.
 const userNameSchema = new Schema<TUserName>({
@@ -17,13 +14,6 @@ const userNameSchema = new Schema<TUserName>({
     required: [true, 'First Name is required'],
     trim: true,
     maxLength: [20, 'First Name can not be more than 20 characters'],
-    // validate: {
-    //   validator: function (value: string) {
-    //     const firstNameStr = value.charAt(0).toUpperCase() + value.slice(1);
-    //     return firstNameStr === value;
-    //   },
-    //   message: '{ VALUE } is not capitalize format',
-    // },
   },
   middleName: {
     type: String,
@@ -33,10 +23,6 @@ const userNameSchema = new Schema<TUserName>({
     type: String,
     required: [true, 'First Name is required'],
     trim: true,
-    // validate: {
-    //   validator: (value: string) => validator.isAlpha(value),
-    //   message: '{VALUE} is not valid',
-    // },
   },
 });
 
@@ -102,14 +88,12 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: String,
       required: [true, 'ID is required'],
       unique: true,
-      trim: true,
-    },
-    password: {
-      type: String,
-      required: [true, 'Password is required'],
-      unique: true,
-      maxLength: [20, 'Password can not be more than 20 character.'],
-      trim: true,
+      user: {
+        type: Schema.Types.ObjectId,
+        required: [true, 'User ID is required'],
+        unique: true,
+        ref: 'User',
+      },
     },
     name: {
       type: userNameSchema,
@@ -133,10 +117,6 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: String,
       required: [true, "Student's email is required"],
       trim: true,
-      // validate: {
-      //   validator: (value: string) => validator.isEmail(value),
-      //   message: '{VALUE} is not valid email',
-      // },
     },
     contactNo: {
       type: String,
@@ -174,11 +154,6 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       trim: true,
     },
     profileImg: { type: String },
-    isActive: {
-      type: String,
-      enum: ['active', 'blocked'],
-      default: 'active',
-    },
     isDeleted: {
       type: Boolean,
       default: false,
@@ -196,24 +171,6 @@ studentSchema.virtual('fullName').get(function () {
   return `${this.name.firstName} ${this.name.middleName} ${this.name.lastName}`;
 });
 
-// Creating a custom static method
-studentSchema.statics.isUserExist = async function (id: string) {
-  const existingUser = await Student.findOne({ id });
-  return existingUser;
-};
-
-// pre save middleware/hook: we will create save()
-studentSchema.pre('save', async function (next) {
-  // console.log(this, 'pre hook : we will save the data');
-  const user = this;
-  // hashing password and save into DB
-  user.password = await bcrypt.hash(
-    user.password,
-    Number(config.bcrypt_salt_rounds),
-  );
-  next();
-});
-
 // Query Middleware
 studentSchema.pre('find', function (next) {
   this.find({ isDeleted: { $ne: true } });
@@ -225,22 +182,15 @@ studentSchema.pre('findOne', function (next) {
   next();
 });
 
-// [{'$match': {isDeleted: {$ne: true}}} ,{ '$match': { id: '123458' } } ]
 studentSchema.pre('aggregate', function (next) {
   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
   next();
 });
 
-// post save middleware/hook
-studentSchema.post('save', function (doc, next) {
-  doc.password = '';
-  next();
-});
-
-// Creating an custom instance method
-// studentSchema.methods.isUserExist = async function (id: string) {
-//   const existingUser = await Student.findOne({ id });
-//   return existingUser;
-// };
+// Creating a custom static method
+studentSchema.statics.isUserExist = async function (id: string) {
+  const existingUser = await Student.findOne({ id });
+  return existingUser;
+};
 
 export const Student = model<TStudent, StudentModel>('Student', studentSchema);
