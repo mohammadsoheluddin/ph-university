@@ -1,0 +1,33 @@
+Module-11:
+        1. PH University Project has been started in first-project,
+        2. Implemented ER Diagram, 
+        3. Refactored previous code, 
+        4. Added user folder for manage user(admin, faculty and student),
+        5. More organized routing, 
+        6. More cleaner error handling and success messages, 
+        7. Used npm http status method, 
+        8. Used next() function, 
+        9. Created middlewares folder including global error handler file and not found file, 
+        10. Created utils folder including sendResponse file, 
+        11. Created separated routes folder into utils folder including "index.ts" file for handle multiple router handling using forEach, 
+        12. Added vercel.json file for deployment purpose, 
+        13. set up default password in env file,
+        14. Module-11 practice has done
+
+Module-12:
+        1. RequestHandler used, import from express. To make shortcut. Reducing repetition of Request, Response and NextFunction.
+        2. Created new file "validateRequest.ts" named in middlewares folder and validation code transfer from user.route.ts to validateRequest.ts
+        3. For above task there some changes in student.validation.ts with a new structure (body:{student:{data}})
+        4. Used AnyZodObject in "validateRequest.ts" file.
+        5. studentValidationSchema has changed to createStudentValidationSchema in student.validation.ts and user.route.ts file
+        6. Created academicSemester Folder:
+                1. academicSemester.interface.ts
+                2. academicSemester.model.ts
+                3. academicSemester.controller.ts
+                4. academicSemester.service.ts
+                5. academicSemester.validation.ts
+                6. academicSemester.constant.ts
+                7. academicSemester.route.ts
+        7. user.utils.ts file created into user folder
+        
+

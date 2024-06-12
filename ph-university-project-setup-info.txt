@@ -1,11 +1,10 @@
-PH University Project
-
+PH University Project:
 A.     Project Details:
         1. This is backend based project.
         2. I've made this using express, mongoose, typescript.
         3. There mainly three part admin, faculty and student.
         4. I've used mongodb database management system.
-        5. Used ESLint and Prettier for the purpose of formatting and correctting project code.
+        5. Used ESLint and Prettier for the purpose of formatting and correcting project code.
         6. I've made interface, schema, model, controller, service file respectively for student purpose.
         7. After that we make a connection with mongodb database.
 

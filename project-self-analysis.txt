@@ -1,0 +1,58 @@
+What I can do in this project:
+1. I can create user, student, admin, faculty, semester using post method.
+2. I can retrieve all users, student, admins, faculties, semesters using get method.
+3. I can retrieve single user, student, admin, faculty, semester using get method.
+4. I can retrieve all users, student, admins, faculties, semesters using get method.
+5. I can delete a single user, student, admin, faculty, semester using id using delete method.
+6. I can update a user, student, admin, faculty, semester data using update method.
+7. I can retrieve a user, student, admin, faculty, semester using id, email, etc. 
+8. 
+
+
+Files and Folders : Purpose of Context
+A.  src Folder (app.ts, server.ts, app folder, .env, .eslintignore, .gitignore, .prettierrc.json, eslint.config.mjs, package-lock-json, package.json, README.md, tsconfig.json, vercel.json)
+    1.  app.ts : Main entry point: All routes work and go through this file.
+    2.  server.ts : This is file always listening what app.ts says. 
+        This file connect mongoose and mongodb via database url.
+    3.  app folder (config folder, middleware folder, modules folder, routes folder, utils folder)
+            a.  config folder (index.ts)
+                i.  index.ts (path connector using dot.env port, database url, default_password, bcrypt_salt_rounds etc can be here)
+            b.  middleware folder (globalErrorHandler.ts, notFound.ts, validateRequest.ts)
+            c.  utils folder (catchAsync.ts, sendResponse.ts)
+            d.  routes folder (index.ts: all routes there are and used forEach)
+            e.  modules folder (user, student, academicSemester folders)
+                1.  user folder:
+                    A.  user.interface.ts
+                    B.  user.model.ts
+                    C.  user.validation.ts
+                    D.  user.route.ts
+                    E.  user.controller.ts
+                    F.  user.service.ts 
+                    G.  user.utils.ts
+                2.  student folder: 
+                    A.  student.interface.ts
+                    B.  student.model.ts
+                    C.  student.validation.ts
+                    D.  student.route.ts
+                    E.  student.controller.ts
+                    F.  student.service.ts
+                3.  academicSemester folder: 
+                    A.  academicSemester.interface.ts
+                    B.  academicSemester.model.ts
+                    C.  academicSemester.route.ts
+                    D.  academicSemester.controller.ts
+                    E.  academicSemester.service.ts
+                    F.  academicSemester.validation.ts
+                    G.  academicSemester.constant.ts
+B.  dist (Copy of app\config\index.js, app.ts, server.ts)
+C.  node_modules
+D.  .env
+E.  .eslintignore
+F.  .gitignore 
+G.  .prettierrc.json 
+H.  eslint.config.mjs 
+I.  package-lock-json 
+J.  package.json 
+K.  README.md 
+L.  tsconfig.json 
+M.  vercel.json
