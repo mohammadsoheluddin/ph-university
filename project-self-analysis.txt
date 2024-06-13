@@ -6,7 +6,7 @@ What I can do in this project:
 5. I can delete a single user, student, admin, faculty, semester using id using delete method.
 6. I can update a user, student, admin, faculty, semester data using update method.
 7. I can retrieve a user, student, admin, faculty, semester using id, email, etc. 
-8. 
+8. We can create student with semester wise and year wise maintaining their proper id
 
 
 Files and Folders : Purpose of Context
