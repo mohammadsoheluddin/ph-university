@@ -16,7 +16,7 @@ const findLastStudentId = async () => {
       createdAt: -1,
     })
     .lean();
-  return lastStudent?.id ? lastStudent.id.substring(6) : undefined;
+  return lastStudent?.id ? lastStudent.id : undefined;
 };
 
 export const generateStudentId = async (payload: TAcademicSemester) => {

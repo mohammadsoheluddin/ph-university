@@ -29,5 +29,22 @@ Module-12:
                 6. academicSemester.constant.ts
                 7. academicSemester.route.ts
         7. user.utils.ts file created into user folder
+
+Module-13:
+        1. Created academic Faculty Folder:
+                1. academicFaculty.interface.ts
+                2. academicFaculty.model.ts
+                3. academicFaculty.validation.ts
+                4. academicFaculty.route.ts
+                5. academicFaculty.controller.ts
+                6. academicFaculty.service.ts
+        2. Created academic Department Folder:
+                1. academicDepartment.interface.ts
+                2. academicDepartment.model.ts
+                3. academicDepartment.validation.ts
+                4. academicDepartment.route.ts
+                5. academicDepartment.controller.ts
+                6. academicDepartment.service.ts
+        3. Created errors folder including AppError.ts
         
 
